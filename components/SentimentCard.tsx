@@ -14,8 +14,11 @@ export default function SentimentCard({ plot }: { plot: string }) {
     async function fetchSentiment() {
       const res = await fetch("/api/sentiment", {
         method: "POST",
-        body: JSON.stringify({ plot }),
-      })
+        headers: {
+          "Content-Type": "application/json"
+    },
+  body: JSON.stringify({ plot }),
+})
 
       const result = await res.json()
       setData(result)
@@ -24,17 +27,24 @@ export default function SentimentCard({ plot }: { plot: string }) {
     fetchSentiment()
   }, [plot])
 
-  if (!data) return <p className="mt-6">Analyzing sentiment...</p>
+  if (!data) {
+  return (
+    <div className="mt-6 animate-pulse bg-gray-800 p-4 rounded">
+      <div className="h-4 bg-gray-700 rounded w-3/4 mb-2"></div>
+      <div className="h-4 bg-gray-700 rounded w-1/2"></div>
+    </div>
+  )
+}
 
   return (
-    <div className="mt-6 bg-gray-900 p-4 rounded-lg">
-      <h2 className="text-xl font-semibold mb-2">AI Audience Sentiment</h2>
+  <div className="mt-6 bg-gray-900 p-4 rounded-lg">
+    <h2 className="text-xl font-semibold mb-2">AI Audience Sentiment</h2>
 
-      <p>{data.summary}</p>
+    <p>{data?.summary}</p>
 
-      <p className="mt-3 font-bold text-purple-400">
-        Overall Sentiment: {data.classification}
-      </p>
-    </div>
+    <p className="mt-3 font-bold text-purple-400">
+      Overall Sentiment: {data?.classification || "Unknown"}
+    </p>
+  </div>
   )
 }

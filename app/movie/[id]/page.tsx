@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { fetchMovie } from "@/services/omdb"
+import SentimentCard from "@/components/SentimentCard"
 
 interface Props {
   params: Promise<{ id: string }>
@@ -36,6 +37,8 @@ export default async function MoviePage({ params }: Props) {
 
           <h2 className="mt-6 font-semibold">Cast</h2>
           <p>{movie.Actors}</p>
+
+          <SentimentCard plot={movie.Plot} />
         </div>
       </div>
     </div>

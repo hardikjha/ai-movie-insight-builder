@@ -123,11 +123,11 @@ Open the application in your browser:
 
 - Homepage
 
-![Homepage](preview/moviehome.png)
+![Homepage](preview/moviehome.PNG)
 
 - Movie Page
 
-![Movie Page](preview/moviepage.png)
+![Movie Page](preview/moviepage.PNG)
 
 
 ------------------------------------------------------------------------
@@ -136,7 +136,7 @@ Open the application in your browser:
 
 Live Application Link:
 
-![Open App on Vercel](https://ai-movie-insight-black-two.vercel.app/)
+[Open App on Vercel](https://ai-movie-insight-black-two.vercel.app/)
 
 ------------------------------------------------------------------------
 

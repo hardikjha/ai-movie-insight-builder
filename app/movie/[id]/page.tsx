@@ -2,11 +2,13 @@ import Image from "next/image"
 import { fetchMovie } from "@/services/omdb"
 
 interface Props {
-  params: { id: string }
+  params: Promise<{ id: string }>
 }
 
 export default async function MoviePage({ params }: Props) {
-  const movie = await fetchMovie(params.id)
+  const { id } = await params
+
+  const movie = await fetchMovie(id)
 
   if (movie.Response === "False") {
     return <div className="p-10 text-red-500">Movie not found</div>
